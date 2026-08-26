@@ -1,0 +1,12 @@
+.git
+.github
+**/__pycache__
+**/*.pyc
+**/.venv
+**/venv
+**/testenv
+**/reqtest
+**/.env
+**/.pytest_cache
+backend/tests
+backend/chroma_store

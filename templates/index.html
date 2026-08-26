@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence RAG</title>
+<meta name="description" content="A retrieval-augmented generation pipeline that shows its evidence - retrieved chunks, distance scores, and faithfulness evaluation alongside every answer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <div>
+        <h1>Evidence RAG</h1>
+        <p class="subtitle">Retrieval-augmented generation that shows its evidence, not just its answer</p>
+      </div>
+    </div>
+    <span class="mode-badge {{ 'live' if api_key_configured else 'sim' }}">
+      {{ 'LIVE — Claude API' if api_key_configured else 'SIMULATED — no API key configured' }}
+    </span>
+  </header>
+
+  <section class="panel">
+    <h2>1. Add a document</h2>
+    <div class="upload-row">
+      <div class="upload-zone" id="dropzone">
+        <input type="file" id="fileInput" accept=".txt,.md,.pdf">
+        <p>Drop a .txt, .md, or .pdf file here, or click to browse</p>
+      </div>
+      <div class="or-divider">or</div>
+      <textarea id="pasteText" placeholder="...paste text directly"></textarea>
+    </div>
+    <div class="upload-actions">
+      <input type="text" id="sourceLabel" placeholder="Source name (optional)">
+      <button id="uploadBtn" class="btn-primary">Ingest document</button>
+    </div>
+    <div id="uploadStatus"></div>
+  </section>
+
+  <section class="panel">
+    <h2>2. Your documents</h2>
+    <div id="documentList" class="doc-list">
+      <p class="placeholder">No documents ingested yet.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>3. Ask a question</h2>
+    <div class="ask-row">
+      <input type="text" id="questionInput" placeholder="Ask something about your ingested documents...">
+      <select id="docFilter"><option value="">All documents</option></select>
+      <button id="askBtn" class="btn-primary">Ask</button>
+    </div>
+    <div id="answerArea"></div>
+  </section>
+
+  <footer>
+    Chunking, embeddings (fastembed/BAAI-bge-small), vector storage (ChromaDB), and faithfulness
+    evaluation are all real and independently tested — generation uses the Claude API when a funded
+    key is configured, and a clearly-labeled simulated fallback otherwise.
+    <a href="https://github.com/dasheill26/evidence-rag" target="_blank">Source &amp; README</a>
+  </footer>
+
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

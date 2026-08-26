@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+testenv/
+reqtest/
+.env
+.pytest_cache/
+backend/chroma_store/
