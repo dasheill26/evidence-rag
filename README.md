@@ -8,6 +8,18 @@ A retrieval-augmented generation pipeline that shows its evidence, not just its 
 
 🔗 **[Live demo](https://evidence-rag.onrender.com)**
 
+## Live, working — not just claimed
+
+Real screenshots from the actual deployed instance, not a mockup:
+
+![Document ingested and simulated answer generated](screenshots/live-demo-ingest.png)
+
+A document gets ingested (1 real chunk created), a question gets asked, and — since no funded Anthropic API key is configured on this deployment — the simulated fallback kicks in exactly as designed, clearly labeled `[SIMULATED]`, extracting from the real top-retrieved chunk rather than fabricating an answer from nothing.
+
+![Real retrieval, real distance score, real faithfulness evaluation](screenshots/live-demo-answer-and-evidence.png)
+
+The honest part worth noticing: **lexical faithfulness scored 0.477 — "partially grounded," not a perfect 1.0.** That's the real number the evaluation harness produced on this real answer, shown as-is rather than picking a cleaner example for the README. The retrieved evidence chunk is shown directly below the answer with its actual distance score (0.1401), so anyone can check the answer against what was actually retrieved rather than trusting it blindly.
+
 ## Why this exists
 
 Every project in this portfolio up to this point had a gap: no full RAG pipeline. Rather than claim experience that wasn't real, this project exists to close that gap honestly — a complete retrieval-augmented generation system built and tested end to end, not just described.
